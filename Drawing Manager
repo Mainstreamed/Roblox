@@ -1,59 +1,119 @@
-local Drawing_Manager = {}
+local drawings = {}
 
-local current_camera = workspace.CurrentCamera
-local screen_center = Vector2.new(current_camera.ViewportSize.X / 2, current_camera.ViewportSize.Y / 2)
+--//Services
+local Workspace = game:GetService('Workspace')
+local Terrain = Workspace:FindFirstChildOfClass('Terrain')
+local Players = game:GetService('Players')
+local SoundService = game:GetService('SoundService')
+local RunService = game:GetService('RunService')
+local UserInputService = game:GetService('UserInputService')
+local HttpService = game:GetService('HttpService')
+local Lighting = game:GetService('Lighting')
+local NetworkClient = game:GetService('NetworkClient')
+local UserGameSettings = UserSettings():GetService('UserGameSettings')
+local ContextActionService = game:GetService('ContextActionService')
+local ReplicatedStorage = game:GetService('ReplicatedStorage')
+local ReplicatedPlayers = ReplicatedStorage:FindFirstChild('Players')
+local CoreGui = game:GetService('CoreGui')
+local GuiService = game:GetService('GuiService')
 
-function Drawing_Manager:CreateLine(properties)
-    local drawing = Drawing.new('Line');
-    drawing.Visible = properties.Visible or false;
-    drawing.Transparency = properties.Transparency or 0.5;
-    drawing.Color = properties.Color or Color3.fromRGB(255, 255, 255);
-    drawing.Thickness = properties.Thickness or 1;
-    drawing.From = properties.From or screen_center;
-    drawing.To = properties.To or screen_center;
+--//Localisation
+local drawing_new, instance_new = Drawing.new, Instance.new
+local color3_new, color3_fromrgb = Color3.new, Color3.fromRGB
+local vector3_new, vector2_new, cframe_new = Vector3.new, Vector2.new, CFrame.new
+local math_huge, math_floor, math_ceil, math_max, math_min, math_random, math_tan, math_rad = math.huge, math.floor, math.ceil, math.max, math.min, math.random, math.tan, math.rad
+local ray_new = Ray.new
+
+--//Other Variables
+local camera = Workspace.CurrentCamera
+local local_player = Players.LocalPlayer
+local mouse = local_player:GetMouse()
+local viewportsize = camera.ViewportSize
+
+local screen_center = vector2_new(camera.ViewportSize.X / 2, camera.ViewportSize.Y / 2)
+
+function drawings:CreateSquare(properties)
+    local drawing = drawing_new.new('Square')
+    drawing.Visible = properties.Visible or true
+    drawing.Transparency = properties.Transparency or 1
+    drawing.Color = properties.Color or color3_fromrgb(255, 255, 255)
+    drawing.Thickness = properties.Thickness or 1
+    drawing.Size = properties.Size or vector2_new(100, 100)
+    drawing.Position = properties.Position or screen_center
+    drawing.Filled = properties.Filled or false
+    table.insert(drawings, drawing)
     return drawing
-end;
-
-function Drawing_Manager:CreateText(properties)
-    local drawing = Drawing.new('Text');
-    drawing.Visible = properties.Visible or false;
-    drawing.Transparency = properties.Transparency or 0.5;
-    drawing.Color = properties.Color or Color3.fromRGB(255, 255, 255);
-    drawing.Text = properties.Text or 'Placeholder Text';
-    drawing.Size = properties.Size or 13;
-    drawing.Center = properties.Center or true;
-    drawing.Outline = properties.Outline or true;
-    drawing.OutlineColor = properties.OutlineColor or Color3.fromRGB(1, 1, 1);
-    drawing.Position = properties.Position or screen_center;
-    drawing.Font = properties.Font or 2;
-    return drawing
-end;
-
-function Drawing_Manager:CreateCircle(properties)
-    local drawing = Drawing.new('Circle');
-    drawing.Visible = properties.Visible or false;
-    drawing.Transparency = properties.Transparency or 0.5;
-    drawing.Color = properties.Color or Color3.fromRGB(255, 255, 255);
-    drawing.Thickness = properties.Thickness or 1;
-    drawing.NumSides = properties.NumSides or 100;
-    drawing.Radius = properties.Radius or 100;
-    drawing.Filled = properties.Filled or false;
-    drawing.Position = properties.Position or screen_center;
-    return drawing
-end;
-
-function Drawing_Manager:CreateSquare(properties)
-    local drawing = Drawing.new('Square');
-    drawing.Visible = properties.Visible or false;
-    drawing.Transparency = properties.Transparency or 0.5;
-    drawing.Color = properties.Color or Color3.fromRGB(255, 255, 255);
-    drawing.Thickness = properties.Thickness or 1;
-    drawing.Size = properties.Size or Vector2.new(100, 100);
-    drawing.Position = properties.Position or screen_center;
-    drawing.Filled = properties.Filled or false;
-    return drawing
-end;
-
-if loadstring(game:HttpGet('https://raw.githubusercontent.com/Mainstreamed/UI/main/testthing'))() then
-    return Drawing_Manager
 end
+
+function drawings:CreateQuad(properties)
+    local drawing = drawing_new.new('Quad')
+    drawing.Visible = properties.Visible or true
+    drawing.Transparency = properties.Transparency or 1
+    drawing.Color = properties.Color or color3_fromrgb(255, 255, 255)
+    drawing.Thickness = properties.Thickness or 1
+    drawing.Filled = properties.Filled or false
+    drawing.PointA = properties.PointA or screen_center
+    drawing.PointB = properties.PointB or screen_center
+    drawing.PointC = properties.PointC or screen_center
+    drawing.PointD = properties.PointD or screen_center
+    table.insert(drawings, drawing)
+    return drawing
+end
+
+function drawings:CreateText(properties)
+    local drawing = drawing_new.new('Text')
+    drawing.Visible = properties.Visible or true
+    drawing.Transparency = properties.Transparency or 1
+    drawing.Color = properties.Color or color3_fromrgb(255, 255, 255)
+    drawing.Font = properties.Font or 2
+    drawing.Position = properties.Position or screen_center
+    drawing.OutlineColor = properties.OutlineColor or color3_fromrgb(1, 1, 1)
+    drawing.Outline = properties.Outline or true
+    drawing.Center = properties.Center or false
+    drawing.Size = properties.Size or 13
+    drawing.Text = properties.Text or 'sample text'
+    table.insert(drawings, drawing)
+    return drawing
+end
+
+function drawings:CreateCircle(properties)
+    local drawing = drawing_new.new('Circle')
+    drawing.Visible = properties.Visible or true
+    drawing.Transparency = properties.Transparency or 1
+    drawing.Color = properties.Color or color3_fromrgb(255, 255, 255)
+    drawing.Thickness = properties.Thickness or 1
+    drawing.NumSides = properties.NumSides or 100
+    drawing.Radius = properties.Radius or 150
+    drawing.Filled = properties.Filled or false
+    drawing.Position = properties.Position or screen_center
+    table.insert(drawings, drawing)
+    return drawing
+end
+
+function drawings:CreateLine(properties)
+    local drawing = drawing_new.new('Line')
+    drawing.Visible = properties.Visible or true
+    drawing.Transparency = properties.Transparency or 1
+    drawing.Color = properties.Color or color3_fromrgb(255, 255, 255)
+    drawing.Thickness = properties.Thickness or 1
+    drawing.From = properties.From or screen_center
+    drawing.To = properties.To or screen_center
+    table.insert(drawings, drawing)
+    return drawing
+end
+
+function drawings:CreateTriangle(properties)
+    local drawing = drawing_new.new('Triangle')
+    drawing.Visible = properties.Visible or true
+    drawing.Transparency = properties.Transparency or 1
+    drawing.Color = properties.Color or color3_fromrgb(255, 255, 255)
+    drawing.Thickness = properties.Thickness or 1
+    drawing.PointA = properties.PointA or screen_center
+    drawing.PointB = properties.PointB or screen_center
+    drawing.PointC = properties.PointC or screen_center
+    drawing.Filled = properties.Filled or false
+    table.insert(drawings, drawing)
+    return drawing
+end
+
+return drawings
