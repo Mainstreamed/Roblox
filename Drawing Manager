@@ -42,6 +42,7 @@ function drawings:CreateSquare(properties)
     drawing.Size = properties.Size or vector2_new(100, 100)
     drawing.Position = properties.Position or screen_center
     drawing.Filled = properties.Filled or false
+    drawing.ZIndex = properties.ZIndex or 0
     table.insert(drawings, drawing)
     return drawing
 end
@@ -58,6 +59,7 @@ function drawings:CreateQuad(properties)
     drawing.PointB = properties.PointB or screen_center
     drawing.PointC = properties.PointC or screen_center
     drawing.PointD = properties.PointD or screen_center
+    drawing.ZIndex = properties.ZIndex or 0
     table.insert(drawings, drawing)
     return drawing
 end
@@ -75,6 +77,7 @@ function drawings:CreateText(properties)
     drawing.Center = properties.Center or false
     drawing.Size = properties.Size or 13
     drawing.Text = properties.Text or 'sample text'
+    drawing.ZIndex = properties.ZIndex or 0
     table.insert(drawings, drawing)
     return drawing
 end
@@ -90,6 +93,7 @@ function drawings:CreateCircle(properties)
     drawing.Radius = properties.Radius or 150
     drawing.Filled = properties.Filled or false
     drawing.Position = properties.Position or screen_center
+    drawing.ZIndex = properties.ZIndex or 0
     table.insert(drawings, drawing)
     return drawing
 end
@@ -103,6 +107,7 @@ function drawings:CreateLine(properties)
     drawing.Thickness = properties.Thickness or 1
     drawing.From = properties.From or screen_center
     drawing.To = properties.To or screen_center
+    drawing.ZIndex = properties.ZIndex or 0
     table.insert(drawings, drawing)
     return drawing
 end
@@ -118,6 +123,7 @@ function drawings:CreateTriangle(properties)
     drawing.PointB = properties.PointB or screen_center
     drawing.PointC = properties.PointC or screen_center
     drawing.Filled = properties.Filled or false
+    drawing.ZIndex = properties.ZIndex or 0
     table.insert(drawings, drawing)
     return drawing
 end
