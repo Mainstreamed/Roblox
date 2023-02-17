@@ -32,7 +32,7 @@ local viewportsize = camera.ViewportSize
 
 local screen_center = vector2_new(camera.ViewportSize.X / 2, camera.ViewportSize.Y / 2)
 
-function drawings:CreateSquare(properties)
+local function drawings:CreateSquare(properties)
     properties = properties or {}
     local drawing = drawing_new('Square')
     drawing.Visible = properties.Visible or true
@@ -46,7 +46,7 @@ function drawings:CreateSquare(properties)
     return drawing
 end
 
-function drawings:CreateQuad(properties)
+local function drawings:CreateQuad(properties)
     properties = properties or {}
     local drawing = drawing_new('Quad')
     drawing.Visible = properties.Visible or true
@@ -62,7 +62,7 @@ function drawings:CreateQuad(properties)
     return drawing
 end
 
-function drawings:CreateText(properties)
+local function drawings:CreateText(properties)
     properties = properties or {}
     local drawing = drawing_new('Text')
     drawing.Visible = properties.Visible or true
@@ -79,7 +79,7 @@ function drawings:CreateText(properties)
     return drawing
 end
 
-function drawings:CreateCircle(properties)
+local function drawings:CreateCircle(properties)
     properties = properties or {}
     local drawing = drawing_new('Circle')
     drawing.Visible = properties.Visible or true
@@ -94,7 +94,7 @@ function drawings:CreateCircle(properties)
     return drawing
 end
 
-function drawings:CreateLine(properties)
+local function drawings:CreateLine(properties)
     properties = properties or {}
     local drawing = drawing_new('Line')
     drawing.Visible = properties.Visible or true
@@ -107,7 +107,7 @@ function drawings:CreateLine(properties)
     return drawing
 end
 
-function drawings:CreateTriangle(properties)
+local function drawings:CreateTriangle(properties)
     properties = properties or {}
     local drawing = drawing_new('Triangle')
     drawing.Visible = properties.Visible or true
