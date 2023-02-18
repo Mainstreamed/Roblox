@@ -34,8 +34,11 @@ local screen_center = vector2_new(camera.ViewportSize.X / 2, camera.ViewportSize
 
 function drawings:CreateSquare(properties)
     properties = properties or {}
+    if (properties.Visible == nil) then
+        properties.Visible = true
+    end
     local drawing = drawing_new('Square')
-    drawing.Visible = properties.Visible or true
+    drawing.Visible = properties.Visible
     drawing.Transparency = properties.Transparency or 1
     drawing.Color = properties.Color or color3_fromrgb(255, 255, 255)
     drawing.Thickness = properties.Thickness or 1
@@ -49,8 +52,11 @@ end
 
 function drawings:CreateQuad(properties)
     properties = properties or {}
+    if (properties.Visible == nil) then
+        properties.Visible = true
+    end
     local drawing = drawing_new('Quad')
-    drawing.Visible = properties.Visible or true
+    drawing.Visible = properties.Visible
     drawing.Transparency = properties.Transparency or 1
     drawing.Color = properties.Color or color3_fromrgb(255, 255, 255)
     drawing.Thickness = properties.Thickness or 1
@@ -66,8 +72,11 @@ end
 
 function drawings:CreateText(properties)
     properties = properties or {}
+    if (properties.Visible == nil) then
+        properties.Visible = true
+    end
     local drawing = drawing_new('Text')
-    drawing.Visible = properties.Visible or true
+    drawing.Visible = properties.Visible
     drawing.Transparency = properties.Transparency or 1
     drawing.Color = properties.Color or color3_fromrgb(255, 255, 255)
     drawing.Font = properties.Font or 2
@@ -84,8 +93,11 @@ end
 
 function drawings:CreateCircle(properties)
     properties = properties or {}
+    if (properties.Visible == nil) then
+        properties.Visible = true
+    end
     local drawing = drawing_new('Circle')
-    drawing.Visible = properties.Visible or true
+    drawing.Visible = properties.Visible
     drawing.Transparency = properties.Transparency or 1
     drawing.Color = properties.Color or color3_fromrgb(255, 255, 255)
     drawing.Thickness = properties.Thickness or 1
@@ -100,8 +112,11 @@ end
 
 function drawings:CreateLine(properties)
     properties = properties or {}
+    if (properties.Visible == nil) then
+        properties.Visible = true
+    end
     local drawing = drawing_new('Line')
-    drawing.Visible = properties.Visible or true
+    drawing.Visible = properties.Visible
     drawing.Transparency = properties.Transparency or 1
     drawing.Color = properties.Color or color3_fromrgb(255, 255, 255)
     drawing.Thickness = properties.Thickness or 1
@@ -114,8 +129,11 @@ end
 
 function drawings:CreateTriangle(properties)
     properties = properties or {}
+    if (properties.Visible == nil) then
+        properties.Visible = true
+    end
     local drawing = drawing_new('Triangle')
-    drawing.Visible = properties.Visible or true
+    drawing.Visible = properties.Visible
     drawing.Transparency = properties.Transparency or 1
     drawing.Color = properties.Color or color3_fromrgb(255, 255, 255)
     drawing.Thickness = properties.Thickness or 1
