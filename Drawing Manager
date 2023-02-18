@@ -48,15 +48,15 @@ function drawings:CreateSquare(properties, tables)
     drawing.Filled = properties.Filled or false
     drawing.ZIndex = properties.ZIndex or 0
     table.insert(drawings, drawing)
-    for _, table in pairs(tables) do
-        if typeof(table) == 'table' then
-            table.insert(table, drawing)
+    for _, _table in pairs(tables) do
+        if typeof(_table) == 'table' then
+            table.insert(_table, drawing)
         end
     end
     return drawing
 end
 
-function drawings:CreateQuad(properties, table)
+function drawings:CreateQuad(properties, tables)
     properties = properties or {}
     tables = tables or {}
     if (properties.Visible == nil) then
@@ -74,15 +74,15 @@ function drawings:CreateQuad(properties, table)
     drawing.PointD = properties.PointD or screen_center
     drawing.ZIndex = properties.ZIndex or 0
     table.insert(drawings, drawing)
-    for _, table in pairs(tables) do
-        if typeof(table) == 'table' then
-            table.insert(table, drawing)
+    for _, _table in pairs(tables) do
+        if typeof(_table) == 'table' then
+            table.insert(_table, drawing)
         end
     end
     return drawing
 end
 
-function drawings:CreateText(properties, table)
+function drawings:CreateText(properties, tables)
     properties = properties or {}
     tables = tables or {}
     if (properties.Visible == nil) then
@@ -101,15 +101,15 @@ function drawings:CreateText(properties, table)
     drawing.Text = properties.Text or 'sample text'
     drawing.ZIndex = properties.ZIndex or 0
     table.insert(drawings, drawing)
-    for _, table in pairs(tables) do
-        if typeof(table) == 'table' then
-            table.insert(table, drawing)
+    for _, _table in pairs(tables) do
+        if typeof(_table) == 'table' then
+            table.insert(_table, drawing)
         end
     end
     return drawing
 end
 
-function drawings:CreateCircle(properties, table)
+function drawings:CreateCircle(properties, tables)
     properties = properties or {}
     tables = tables or {}
     if (properties.Visible == nil) then
@@ -126,15 +126,15 @@ function drawings:CreateCircle(properties, table)
     drawing.Position = properties.Position or screen_center
     drawing.ZIndex = properties.ZIndex or 0
     table.insert(drawings, drawing)
-    for _, table in pairs(tables) do
-        if typeof(table) == 'table' then
-            table.insert(table, drawing)
+    for _, _table in pairs(tables) do
+        if typeof(_table) == 'table' then
+            table.insert(_table, drawing)
         end
     end
     return drawing
 end
 
-function drawings:CreateLine(properties, table)
+function drawings:CreateLine(properties, tables)
     properties = properties or {}
     tables = tables or {}
     if (properties.Visible == nil) then
@@ -149,15 +149,15 @@ function drawings:CreateLine(properties, table)
     drawing.To = properties.To or screen_center
     drawing.ZIndex = properties.ZIndex or 0
     table.insert(drawings, drawing)
-    for _, table in pairs(tables) do
-        if typeof(table) == 'table' then
-            table.insert(table, drawing)
+    for _, _table in pairs(tables) do
+        if typeof(_table) == 'table' then
+            table.insert(_table, drawing)
         end
     end
     return drawing
 end
 
-function drawings:CreateTriangle(properties, table)
+function drawings:CreateTriangle(properties, tables)
     properties = properties or {}
     tables = tables or {}
     if (properties.Visible == nil) then
@@ -174,9 +174,9 @@ function drawings:CreateTriangle(properties, table)
     drawing.Filled = properties.Filled or false
     drawing.ZIndex = properties.ZIndex or 0
     table.insert(drawings, drawing)
-    for _, table in pairs(tables) do
-        if typeof(table) == 'table' then
-            table.insert(table, drawing)
+    for _, _table in pairs(tables) do
+        if typeof(_table) == 'table' then
+            table.insert(_table, drawing)
         end
     end
     return drawing
