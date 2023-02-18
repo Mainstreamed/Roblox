@@ -32,8 +32,9 @@ local viewportsize = camera.ViewportSize
 
 local screen_center = vector2_new(camera.ViewportSize.X / 2, camera.ViewportSize.Y / 2)
 
-function drawings:CreateSquare(properties)
+function drawings:CreateSquare(properties, tables)
     properties = properties or {}
+    tables = tables or {}
     if (properties.Visible == nil) then
         properties.Visible = true
     end
@@ -47,11 +48,17 @@ function drawings:CreateSquare(properties)
     drawing.Filled = properties.Filled or false
     drawing.ZIndex = properties.ZIndex or 0
     table.insert(drawings, drawing)
+    for _, table in pairs(tables) do
+        if typeof(table) == 'table' then
+            table.insert(table, drawing)
+        end
+    end
     return drawing
 end
 
-function drawings:CreateQuad(properties)
+function drawings:CreateQuad(properties, table)
     properties = properties or {}
+    tables = tables or {}
     if (properties.Visible == nil) then
         properties.Visible = true
     end
@@ -67,11 +74,17 @@ function drawings:CreateQuad(properties)
     drawing.PointD = properties.PointD or screen_center
     drawing.ZIndex = properties.ZIndex or 0
     table.insert(drawings, drawing)
+    for _, table in pairs(tables) do
+        if typeof(table) == 'table' then
+            table.insert(table, drawing)
+        end
+    end
     return drawing
 end
 
-function drawings:CreateText(properties)
+function drawings:CreateText(properties, table)
     properties = properties or {}
+    tables = tables or {}
     if (properties.Visible == nil) then
         properties.Visible = true
     end
@@ -88,11 +101,17 @@ function drawings:CreateText(properties)
     drawing.Text = properties.Text or 'sample text'
     drawing.ZIndex = properties.ZIndex or 0
     table.insert(drawings, drawing)
+    for _, table in pairs(tables) do
+        if typeof(table) == 'table' then
+            table.insert(table, drawing)
+        end
+    end
     return drawing
 end
 
-function drawings:CreateCircle(properties)
+function drawings:CreateCircle(properties, table)
     properties = properties or {}
+    tables = tables or {}
     if (properties.Visible == nil) then
         properties.Visible = true
     end
@@ -107,11 +126,17 @@ function drawings:CreateCircle(properties)
     drawing.Position = properties.Position or screen_center
     drawing.ZIndex = properties.ZIndex or 0
     table.insert(drawings, drawing)
+    for _, table in pairs(tables) do
+        if typeof(table) == 'table' then
+            table.insert(table, drawing)
+        end
+    end
     return drawing
 end
 
-function drawings:CreateLine(properties)
+function drawings:CreateLine(properties, table)
     properties = properties or {}
+    tables = tables or {}
     if (properties.Visible == nil) then
         properties.Visible = true
     end
@@ -124,11 +149,17 @@ function drawings:CreateLine(properties)
     drawing.To = properties.To or screen_center
     drawing.ZIndex = properties.ZIndex or 0
     table.insert(drawings, drawing)
+    for _, table in pairs(tables) do
+        if typeof(table) == 'table' then
+            table.insert(table, drawing)
+        end
+    end
     return drawing
 end
 
-function drawings:CreateTriangle(properties)
+function drawings:CreateTriangle(properties, table)
     properties = properties or {}
+    tables = tables or {}
     if (properties.Visible == nil) then
         properties.Visible = true
     end
@@ -143,6 +174,11 @@ function drawings:CreateTriangle(properties)
     drawing.Filled = properties.Filled or false
     drawing.ZIndex = properties.ZIndex or 0
     table.insert(drawings, drawing)
+    for _, table in pairs(tables) do
+        if typeof(table) == 'table' then
+            table.insert(table, drawing)
+        end
+    end
     return drawing
 end
 
