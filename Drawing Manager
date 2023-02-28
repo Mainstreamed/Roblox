@@ -191,7 +191,6 @@ function drawings:CreateImage(properties)
     local drawing = drawing_new('Image')
     drawing.Visible = properties.Visible
     drawing.Transparency = properties.Transparency or 1
-    drawing.Color = properties.Color or color3_fromrgb(255, 255, 255)
     drawing.Data = properties.Data or ''
     drawing.Size = properties.Size or vector2_new(10, 10)
     drawing.Position = properties.Position or screen_center
