@@ -182,7 +182,7 @@ function drawings:CreateTriangle(properties, tables)
     return drawing
 end
 
-function drawings:CreateImage(properties)
+function drawings:CreateImage(properties, tables)
     properties = properties or {}
     tables = tables or {}
     if (properties.Visible == nil) then
@@ -195,7 +195,6 @@ function drawings:CreateImage(properties)
     drawing.Size = properties.Size or vector2_new(10, 10)
     drawing.Position = properties.Position or screen_center
     drawing.Rounding = properties.Rounding or 1
-
     table.insert(drawings, drawing)
     for _, _table in pairs(tables) do
         if typeof(_table) == 'table' then
